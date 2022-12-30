@@ -59,7 +59,7 @@ export const changeConfig = (flags: Flags, data: File, path: string): [File, str
       if (!profile.font) return;
 
       const font = flags.f ?? flags.font;
-      profile.font.face = JSON.stringify(font);
+      profile.font.face = font;
     }
 
     if (flags.i || flags.image) {
