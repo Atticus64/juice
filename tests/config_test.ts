@@ -21,8 +21,6 @@ Deno.test('getWtFiles function should return the content and path of settings fi
 
 })
 
-
-
 Deno.test('changeConfig should change the options in config file', async () => {
 
   const [path, _] = await checkConfig(true)
@@ -46,6 +44,25 @@ Deno.test('changeConfig should change the options in config file', async () => {
   assertEquals(hackerProfile?.colorScheme, 'Dracula')
   assertEquals(hackerProfile?.backgroundImage, 'creeper.jpg')
 
+})
+
+Deno.test('changeConfig should modify in config file', async () => {
+
+  const [path, _] = await checkConfig(true)
+  const [content, configPath] = await getWtFiles(path)
+  const flags: Flags = getFlags()
+  flags.font = 'Minecraft Font'
+  flags.image = 'creeper.jpg'
+  flags.scheme = 'Dracula'
+  flags.terminal = 'Hacker'
+
+  const jsonContent = JSON.parse(content)
+
+  const jsonString = JSON.stringify(jsonContent, null, "\t")
+
+  const [_data, configString] = changeConfig(flags, jsonContent, configPath)
+
+  assertEquals(configString, jsonString)
 })
 
 Deno.test('if dont especify the terminal should return error', async () => {
