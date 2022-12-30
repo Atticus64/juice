@@ -33,7 +33,7 @@ const fontSize = ["fontSize", "z"];
 const help = ["help", "h"];
 const cursor = ["cursor", "c"];
 const padding = ["padding", "p"];
-const version = ["version", "v"]
+const version = ["version", "v"];
 
 export const getFlags = async () => {
   let flags: Flags = parse(Deno.args, {

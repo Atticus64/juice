@@ -8,7 +8,7 @@ const main = async () => {
 
   const needHelp = flags.help || flags.h;
 
-  const versionAsk = flags.version || flags.v
+  const versionAsk = flags.version || flags.v;
 
   if (needHelp || Deno.args.length === 0) {
     showHelp();
@@ -16,7 +16,7 @@ const main = async () => {
   }
 
   if (versionAsk) {
-    showVersion()
+    showVersion();
     return;
   }
 

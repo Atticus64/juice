@@ -1,9 +1,9 @@
 import { blue, cyan, green, reset, yellow } from "colors";
-const version = "0.2.0"
+const version = "0.2.0";
 
 export const showVersion = () => {
-  console.log(`juice ${version}`)
-}
+  console.log(`juice ${version}`);
+};
 
 export const showHelp = () => {
   console.log(cyan(`juice ${reset("[options]")}`));
