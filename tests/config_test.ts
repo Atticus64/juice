@@ -42,7 +42,7 @@ Deno.test('changeConfig should change the options in config file', async () => {
   const hackerProfile = profiles.find(p => p.name === 'Hacker');
 
 
-  assertEquals(hackerProfile?.font?.face, '"Minecraft Font"')
+  assertEquals(hackerProfile?.font?.face, 'Minecraft Font')
   assertEquals(hackerProfile?.colorScheme, 'Dracula')
   assertEquals(hackerProfile?.backgroundImage, 'creeper.jpg')
 
