@@ -1,9 +1,13 @@
-import { cyan, green, reset, yellow } from "colors";
+import { blue, cyan, green, reset, yellow } from "colors";
 
 export const showHelp = () => {
   console.log(cyan(`juice ${reset("[options]")}`));
   console.log(
     reset("  A sweet and fresh script to configure windows terminal easily"),
+  );
+  console.log(blue("Subcommands:"));
+  console.log(
+    `  use  <profile>  ${yellow("Set profile config of juice.json")}`,
   );
   console.log(green("Options:"));
   console.log(`  --help      -h  ${yellow("Shows help")}`);

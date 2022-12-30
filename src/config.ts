@@ -1,6 +1,6 @@
 import { exists } from "https://deno.land/std@0.74.0/fs/mod.ts";
 import home_dir from "https://deno.land/x/dir@1.5.1/home_dir/mod.ts";
-import { green, red } from "https://deno.land/std@0.170.0/fmt/colors.ts";
+import { green, red } from "colors";
 import { File } from "$/file.ts";
 import { Flags } from "$/flag.ts";
 

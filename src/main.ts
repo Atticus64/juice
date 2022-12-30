@@ -4,7 +4,7 @@ import { changeConfig, checkConfig, getWtFiles } from "$/config.ts";
 import { showHelp } from "$/help.ts";
 
 const main = async () => {
-  const flags: Flags = getFlags();
+  const flags: Flags = await getFlags();
 
   const needHelp = flags.help || flags.h;
 
