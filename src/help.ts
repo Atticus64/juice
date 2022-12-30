@@ -1,5 +1,5 @@
 import { blue, cyan, green, reset, yellow } from "colors";
-const version = "0.2.0";
+const version = "0.2.1";
 
 export const showVersion = () => {
   console.log(`juice ${version}`);

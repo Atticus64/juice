@@ -250,16 +250,18 @@
 				"backgroundImageOpacity": 0.33,
 				"colorScheme": "Dracula",
 				"commandline": "\"pwsh.exe\" -nologo",
-				"cursorShape": "filledBox",
+				"cursorShape": "bar",
 				"font": {
-					"face": "Minecraft Font"
+					"face": "Minecraft Font",
+					"size": 16
 				},
 				"guid": "{574e775e-4f2a-5b96-ac1e-a2962a344754}",
 				"hidden": false,
 				"name": "Hacker",
 				"opacity": 100,
 				"source": "Windows.Terminal.PowershellCore",
-				"useAcrylic": true
+				"useAcrylic": true,
+				"padding": "6"
 			},
 			{
 				"backgroundImage": "r2d2.png",
