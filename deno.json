@@ -1,0 +1,8 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-read --allow-env --allow-write src/main.ts",
+    "build": "deno compile  --allow-read --allow-env --allow-write --output dist/juice src/main.ts",
+    "test": "deno test --allow-read --allow-env --allow-write "
+  },
+  "importMap": "./import_map.json"
+}

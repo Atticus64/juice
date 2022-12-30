@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "testing": "https://deno.land/std@0.152.0/testing/asserts.ts",
+    "$/": "./src/",
+    "colors": "https://deno.land/std@0.170.0/fmt/colors.ts"
+  }
+}
