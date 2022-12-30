@@ -1,7 +1,7 @@
 import { red } from "colors";
 import { Flags, getFlags } from "$/flag.ts";
 import { changeConfig, checkConfig, getWtFiles } from "$/config.ts";
-import { showHelp } from '$/help.ts';
+import { showHelp } from "$/help.ts";
 
 const main = async () => {
   const flags: Flags = getFlags();

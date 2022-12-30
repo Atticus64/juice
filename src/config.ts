@@ -4,7 +4,9 @@ import { green, red } from "https://deno.land/std@0.170.0/fmt/colors.ts";
 import { File } from "$/file.ts";
 import { Flags } from "$/flag.ts";
 
-export const checkConfig = async (is_test?: boolean): Promise<([string, boolean])> => {
+export const checkConfig = async (
+  is_test?: boolean,
+): Promise<([string, boolean])> => {
   const homeFile = home_dir() + "/.config/juice.json";
   const dirFile = "./juice.json";
 
@@ -13,7 +15,6 @@ export const checkConfig = async (is_test?: boolean): Promise<([string, boolean]
     const haveConfig = await exists(configPath);
     return [configPath, haveConfig];
   }
-
 
   let configPath = homeFile;
   let haveConfig = await exists(configPath);
@@ -35,9 +36,15 @@ export const getWtFiles = async (configPath: string) => {
   return [fileWindowsTerminal, wtPath];
 };
 
-export const changeConfig = (flags: Flags, data: File, path: string): [File, string] => {
+export const changeConfig = (
+  flags: Flags,
+  data: File,
+  path: string,
+): [File, string] => {
   if (!flags.terminal && !flags.t) {
-    throw new Error(red("You need to specify the terminal to apply the config"));
+    throw new Error(
+      red("You need to specify the terminal to apply the config"),
+    );
   }
 
   const name = flags.terminal ?? flags.t;
@@ -79,5 +86,5 @@ export const changeConfig = (flags: Flags, data: File, path: string): [File, str
 
   console.log(green("Config updated!"));
 
-  return [data, newConfig]
+  return [data, newConfig];
 };
