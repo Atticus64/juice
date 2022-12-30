@@ -8,7 +8,7 @@ A sweet and refreshing deno script to personalize windows terminal
 
 ![juice.gif](https://i.postimg.cc/KvSQywn0/juice.gif)
 
-- [Getting Started](https://github.com/Atticus64/juice/wiki/Getting-Started)_
+- [Getting Started](https://github.com/Atticus64/juice/wiki/Getting-Started)
 
 ## Dev server
 
