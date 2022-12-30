@@ -1,4 +1,4 @@
-import { parse } from "https://deno.land/std@0.168.0/flags/mod.ts";
+import { parse } from "flags";
 import { red } from "colors";
 import { checkConfig } from "$/config.ts";
 import { getProfilesConfig } from "$/profile.ts";
