@@ -49,7 +49,7 @@ Deno.test("getProfilesConfig should return profiles if exists", async () => {
       padding: "4",
       useAcrylic: false,
     },
-  }
+  };
 
   const [configPath, _] = await checkConfig(true);
 
@@ -57,5 +57,5 @@ Deno.test("getProfilesConfig should return profiles if exists", async () => {
 
   const result = await getProfilesConfig(configPath);
 
-  assertEquals(result, profiles)
+  assertEquals(result, profiles);
 });
