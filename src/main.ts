@@ -1,15 +1,22 @@
 import { red } from "colors";
 import { Flags, getFlags } from "$/flag.ts";
 import { changeConfig, checkConfig, getWtFiles } from "$/config.ts";
-import { showHelp } from "$/help.ts";
+import { showHelp, showVersion } from "$/help.ts";
 
 const main = async () => {
   const flags: Flags = await getFlags();
 
   const needHelp = flags.help || flags.h;
 
+  const versionAsk = flags.version || flags.v
+
   if (needHelp || Deno.args.length === 0) {
     showHelp();
+    return;
+  }
+
+  if (versionAsk) {
+    showVersion()
     return;
   }
 

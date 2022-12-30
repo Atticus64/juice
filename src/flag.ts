@@ -9,18 +9,21 @@ export interface Flags {
   scheme?: string;
   image?: string;
   help?: boolean;
+  version?: boolean;
   font?: string;
   fontSize?: number;
   cursor?: string;
   padding?: string;
   t?: string;
   s?: string;
+  v?: boolean;
   i?: string;
   h?: boolean;
   f?: string;
   z?: number;
   c?: string;
   p?: string;
+  _: (string | number)[];
 }
 
 const terminal = ["terminal", "t"];
@@ -30,12 +33,12 @@ const fontSize = ["fontSize", "z"];
 const help = ["help", "h"];
 const cursor = ["cursor", "c"];
 const padding = ["padding", "p"];
+const version = ["version", "v"]
 
 export const getFlags = async () => {
   let flags: Flags = parse(Deno.args, {
-    boolean: ["help", "h"],
+    boolean: [...help, ...version],
     string: [
-      ...help,
       ...terminal,
       ...font,
       ...fontSize,

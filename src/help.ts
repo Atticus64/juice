@@ -1,4 +1,9 @@
 import { blue, cyan, green, reset, yellow } from "colors";
+const version = "0.2.0"
+
+export const showVersion = () => {
+  console.log(`juice ${version}`)
+}
 
 export const showHelp = () => {
   console.log(cyan(`juice ${reset("[options]")}`));
@@ -11,6 +16,7 @@ export const showHelp = () => {
   );
   console.log(green("Options:"));
   console.log(`  --help      -h  ${yellow("Shows help")}`);
+  console.log(`  --version   -v  ${yellow("Show current version")}`);
   console.log(`  --terminal  -t  ${yellow("Terminal to apply config")}`);
   console.log(`  --scheme    -s  ${yellow("Set scheme")}`);
   console.log(`  --image     -i  ${yellow("Set background image")}`);
