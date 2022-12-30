@@ -1,3 +1,17 @@
 {
-  "config": "./example-settings.json"
+	"config": "./example-settings.json",
+	"profiles": {
+		"fresh": {
+			"backgroundImage": "C://Users//Admin//Desktop/deno.jpg",
+			"colorScheme": "Dracula",
+			"cursorShape": "filledBox",
+			"font": {
+				"face": "JetBrainsMono NF",
+				"size": 14
+			},
+			"opacity": 10,
+			"padding": "4",
+			"useAcrylic": false
+		}
+	}
 }
