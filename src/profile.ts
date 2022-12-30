@@ -6,11 +6,13 @@ export interface Profile {
   cursorShape?: string;
   font?: {
     face?: string;
+    size?: number;
   };
   guid?: string;
   hidden?: boolean;
   name: string;
   opacity?: number;
   source?: string;
+  padding?: string;
   useAcrylic?: boolean;
 }

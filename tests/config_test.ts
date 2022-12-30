@@ -25,6 +25,9 @@ Deno.test("changeConfig should change the options in config file", async () => {
   flags.image = "creeper.jpg";
   flags.scheme = "Dracula";
   flags.terminal = "Hacker";
+  flags.cursor = "bar";
+  flags.fontSize = 16;
+  flags.padding = "6";
 
   const jsonContent = JSON.parse(content);
 
@@ -37,6 +40,9 @@ Deno.test("changeConfig should change the options in config file", async () => {
   assertEquals(hackerProfile?.font?.face, "Minecraft Font");
   assertEquals(hackerProfile?.colorScheme, "Dracula");
   assertEquals(hackerProfile?.backgroundImage, "creeper.jpg");
+  assertEquals(hackerProfile?.cursorShape, "bar");
+  assertEquals(hackerProfile?.font?.size, 16);
+  assertEquals(hackerProfile?.padding, "6");
 });
 
 Deno.test("changeConfig should modify in config file", async () => {

@@ -6,17 +6,40 @@ export interface Flags {
   image?: string;
   help?: boolean;
   font?: string;
+  fontSize?: number;
+  cursor?: string;
+  padding?: string;
   t?: string;
   s?: string;
   i?: string;
   h?: boolean;
   f?: string;
+  z?: number;
+  c?: string;
+  p?: string;
 }
 
+const terminal = ["terminal", "t"];
+const scheme = ["scheme", "s"];
+const font = ["font", "f"];
+const fontSize = ["fontSize", "z"];
+const help = ["help", "h"]
+const cursor = ["cursor", "c"];
+const padding = ["padding", "p"];
+
 export const getFlags = () => {
-  const flags = parse(Deno.args, {
+
+  const flags: Flags = parse(Deno.args, {
     boolean: ["help", "h"],
-    string: ["terminal", "t", "scheme", "s", "i", "image", "font", "f"],
+    string: [
+      ...help,
+      ...terminal,
+      ...font,
+      ...fontSize,
+      ...scheme,
+      ...cursor,
+      ...padding,
+    ],
   });
 
   return flags;

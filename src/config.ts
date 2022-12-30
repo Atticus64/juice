@@ -69,6 +69,13 @@ export const changeConfig = (
       profile.font.face = font;
     }
 
+    if (flags.z || flags.fontSize) {
+      if (!profile.font) return;
+
+      const size = flags.z ?? flags.fontSize;
+      profile.font.size = Number(size);
+    }
+
     if (flags.i || flags.image) {
       const image = flags.i ?? flags.image;
       profile.backgroundImage = image;
@@ -77,6 +84,16 @@ export const changeConfig = (
     if (flags.s || flags.scheme) {
       const scheme = flags.s ?? flags.scheme;
       profile.colorScheme = scheme;
+    }
+
+    if (flags.p || flags.padding) {
+      const padding = flags.p ?? flags.padding;
+      profile.padding = padding;
+    }
+
+    if (flags.c || flags.cursor) {
+      const cursor = flags.c ?? flags.cursor;
+      profile.cursorShape = cursor;
     }
   });
 
