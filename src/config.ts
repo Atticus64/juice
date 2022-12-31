@@ -30,7 +30,12 @@ export const checkConfig = async (
 export const getWtFiles = async (configPath: string) => {
   const fileRaw = await Deno.readTextFile(configPath);
   const wtJson = JSON.parse(fileRaw);
-  const wtPath: string = wtJson.config;
+  let wtPath = wtJson.config;
+
+  if (!wtPath) {
+    wtPath = await getSettingsFile();
+  }
+
   const fileWindowsTerminal = await Deno.readTextFile(wtPath);
 
   return [fileWindowsTerminal, wtPath];
@@ -104,4 +109,25 @@ export const changeConfig = (
   console.log(green("Config updated!"));
 
   return [data, newConfig];
+};
+
+export const getSettingsFile = async () => {
+  let path = home_dir() + "\\AppData\\Local\\Packages\\";
+  let folderName = "";
+
+  for await (const entry of Deno.readDir(path)) {
+    if (entry.name.startsWith("Microsoft.WindowsTerminal_")) {
+      folderName = entry.name;
+    }
+  }
+
+  path += `${folderName}\\LocalState\\settings.json`;
+
+  const haveSettings = await exists(path);
+
+  if (!haveSettings) {
+    throw new Error(red(`Settings.json no exists in path: ${path}`));
+  }
+
+  return path;
 };

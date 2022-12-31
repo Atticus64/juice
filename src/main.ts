@@ -1,6 +1,10 @@
-import { red } from "colors";
 import { Flags, getFlags } from "$/flag.ts";
-import { changeConfig, checkConfig, getWtFiles } from "$/config.ts";
+import {
+  changeConfig,
+  checkConfig,
+  getSettingsFile,
+  getWtFiles,
+} from "$/config.ts";
 import { showHelp, showVersion } from "$/help.ts";
 
 const main = async () => {
@@ -23,11 +27,15 @@ const main = async () => {
   const [configPath, haveConfig] = await checkConfig();
 
   if (!haveConfig) {
-    throw Error(
-      red(
-        "You need to have a config file juice.json in current dir or in $HOME/config/juice.json",
-      ),
-    );
+    const settingsPath = await getSettingsFile();
+
+    const fileWindowsTerminal = await Deno.readTextFile(settingsPath);
+
+    const fileWtJson = JSON.parse(fileWindowsTerminal);
+
+    changeConfig(flags, fileWtJson, settingsPath);
+
+    return;
   }
 
   const [fileWindowsTerminal, wtPath] = await getWtFiles(configPath);
