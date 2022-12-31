@@ -27,22 +27,30 @@ const main = async () => {
   const [configPath, haveConfig] = await checkConfig();
 
   if (!haveConfig) {
-    const settingsPath = await getSettingsFile();
+    try {
+      const settingsPath = await getSettingsFile();
 
-    const fileWindowsTerminal = await Deno.readTextFile(settingsPath);
+      const fileWindowsTerminal = await Deno.readTextFile(settingsPath);
+
+      const fileWtJson = JSON.parse(fileWindowsTerminal);
+
+      changeConfig(flags, fileWtJson, settingsPath);
+
+      return;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  try {
+    const [fileWindowsTerminal, wtPath] = await getWtFiles(configPath);
 
     const fileWtJson = JSON.parse(fileWindowsTerminal);
 
-    changeConfig(flags, fileWtJson, settingsPath);
-
-    return;
+    changeConfig(flags, fileWtJson, wtPath);
+  } catch (err) {
+    throw new Error(err);
   }
-
-  const [fileWindowsTerminal, wtPath] = await getWtFiles(configPath);
-
-  const fileWtJson = JSON.parse(fileWindowsTerminal);
-
-  changeConfig(flags, fileWtJson, wtPath);
 };
 
 if (import.meta.main) main();

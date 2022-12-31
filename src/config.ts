@@ -3,6 +3,7 @@ import home_dir from "home_dir";
 import { green, red } from "colors";
 import { File } from "$/file.ts";
 import { Flags } from "$/flag.ts";
+import { changeProfileValues } from "$/profile.ts";
 
 export const checkConfig = async (
   is_test?: boolean,
@@ -28,106 +29,74 @@ export const checkConfig = async (
 };
 
 export const getWtFiles = async (configPath: string) => {
-  const fileRaw = await Deno.readTextFile(configPath);
-  const wtJson = JSON.parse(fileRaw);
-  let wtPath = wtJson.config;
+  try {
+    const fileRaw = await Deno.readTextFile(configPath);
+    const wtJson = JSON.parse(fileRaw);
+    let wtPath = wtJson.config;
 
-  if (!wtPath) {
-    wtPath = await getSettingsFile();
+    if (!wtPath) {
+      wtPath = await getSettingsFile();
+    }
+
+    const fileWindowsTerminal = await Deno.readTextFile(wtPath);
+
+    return [fileWindowsTerminal, wtPath];
+  } catch (err) {
+    throw new Error(err);
   }
-
-  const fileWindowsTerminal = await Deno.readTextFile(wtPath);
-
-  return [fileWindowsTerminal, wtPath];
 };
 
-export const changeConfig = (
+export const changeConfig = async (
   flags: Flags,
   data: File,
   path: string,
-): [File, string] => {
+): Promise<[File, string]> => {
   if (!flags.terminal && !flags.t) {
     throw new Error(
       red("You need to specify the terminal to apply the config"),
     );
   }
 
-  const name = flags.terminal ?? flags.t;
+  try {
+    const profiles = data.profiles.list;
 
-  const profiles = data.profiles.list;
+    profiles.forEach((prof) => {
+      changeProfileValues(prof, flags);
+    });
 
-  const profile = profiles?.find((p) => {
-    if (!name) return;
+    const newConfig = JSON.stringify(data, null, "\t");
 
-    return p.name.includes(name);
-  });
+    await Deno.writeTextFile(path, newConfig);
 
-  profiles.forEach((prof) => {
-    if (!name || !profile) return;
+    console.log(green("Config updated!"));
 
-    if (!prof.name.includes(name)) return;
-
-    if (flags.f || flags.font) {
-      if (!profile.font) return;
-
-      const font = flags.f ?? flags.font;
-      profile.font.face = font;
-    }
-
-    if (flags.z || flags.fontSize) {
-      if (!profile.font) return;
-
-      const size = flags.z ?? flags.fontSize;
-      profile.font.size = Number(size);
-    }
-
-    if (flags.i || flags.image) {
-      const image = flags.i ?? flags.image;
-      profile.backgroundImage = image;
-    }
-
-    if (flags.s || flags.scheme) {
-      const scheme = flags.s ?? flags.scheme;
-      profile.colorScheme = scheme;
-    }
-
-    if (flags.p || flags.padding) {
-      const padding = flags.p ?? flags.padding;
-      profile.padding = padding;
-    }
-
-    if (flags.c || flags.cursor) {
-      const cursor = flags.c ?? flags.cursor;
-      profile.cursorShape = cursor;
-    }
-  });
-
-  const newConfig = JSON.stringify(data, null, "\t");
-
-  Deno.writeTextFile(path, newConfig);
-
-  console.log(green("Config updated!"));
-
-  return [data, newConfig];
+    return [data, newConfig];
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 export const getSettingsFile = async () => {
   let path = home_dir() + "\\AppData\\Local\\Packages\\";
   let folderName = "";
 
-  for await (const entry of Deno.readDir(path)) {
-    if (entry.name.startsWith("Microsoft.WindowsTerminal_")) {
-      folderName = entry.name;
+  try {
+    for await (const entry of Deno.readDir(path)) {
+      if (entry.name.startsWith("Microsoft.WindowsTerminal_")) {
+        folderName = entry.name;
+      }
     }
+
+    path += `${folderName}\\LocalState\\settings.json`;
+
+    const haveSettings = await exists(path);
+
+    if (!haveSettings) {
+      throw new Error(red(`Settings.json no exists in path: ${path}`));
+    }
+
+    return path;
+  } catch (err) {
+    throw new Error(err);
   }
-
-  path += `${folderName}\\LocalState\\settings.json`;
-
-  const haveSettings = await exists(path);
-
-  if (!haveSettings) {
-    throw new Error(red(`Settings.json no exists in path: ${path}`));
-  }
-
-  return path;
 };

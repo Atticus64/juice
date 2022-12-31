@@ -1,4 +1,5 @@
 import { red } from "colors";
+import { Flags } from "$/flag.ts";
 
 export interface Profile {
   backgroundImage?: string;
@@ -31,4 +32,44 @@ export const getProfilesConfig = async (configPath: string) => {
   }
 
   return profiles;
+};
+
+export const changeProfileValues = (profile: Profile, flags: Flags) => {
+  if (!profile.font) return;
+
+  try {
+    if (flags.f || flags.font) {
+      const font = flags.f ?? flags.font;
+      profile.font.face = font;
+    }
+
+    if (flags.z || flags.fontSize) {
+      const size = flags.z ?? flags.fontSize;
+      profile.font.size = Number(size);
+    }
+
+    if (flags.i || flags.image) {
+      const image = flags.i ?? flags.image;
+      profile.backgroundImage = image;
+    }
+
+    if (flags.s || flags.scheme) {
+      const scheme = flags.s ?? flags.scheme;
+      profile.colorScheme = scheme;
+    }
+
+    if (flags.p || flags.padding) {
+      const padding = flags.p ?? flags.padding;
+      profile.padding = padding;
+    }
+
+    if (flags.c || flags.cursor) {
+      const cursor = flags.c ?? flags.cursor;
+      profile.cursorShape = cursor;
+    }
+
+    return profile;
+  } catch (err) {
+    throw new Error(err);
+  }
 };
