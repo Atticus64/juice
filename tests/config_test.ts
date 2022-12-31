@@ -1,4 +1,4 @@
-import { assertEquals, assertThrows } from "testing";
+import { assertEquals, assertRejects } from "testing";
 import {
   changeConfig,
   checkConfig,
@@ -55,7 +55,11 @@ Deno.test("changeConfig should change the options in config file", async () => {
 
   const jsonContent = JSON.parse(content);
 
-  const [data, _configString] = changeConfig(flags, jsonContent, configPath);
+  const [data, _configString] = await changeConfig(
+    flags,
+    jsonContent,
+    configPath,
+  );
 
   const profiles = data.profiles.list;
 
@@ -88,7 +92,11 @@ Deno.test("changeConfig should modify in config file", async () => {
 
   const jsonString = JSON.stringify(jsonContent, null, "\t");
 
-  const [_data, configString] = changeConfig(flags, jsonContent, configPath);
+  const [_data, configString] = await changeConfig(
+    flags,
+    jsonContent,
+    configPath,
+  );
 
   assertEquals(configString, jsonString);
 });
@@ -108,8 +116,8 @@ Deno.test("if dont especify the terminal should return error", async () => {
 
   const jsonContent = JSON.parse(content);
 
-  assertThrows(
-    () => changeConfig(flags, jsonContent, configPath),
+  assertRejects(
+    async () => await changeConfig(flags, jsonContent, configPath),
     Error,
     "You need to specify the terminal to apply the config",
   );
