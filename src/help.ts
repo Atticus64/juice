@@ -21,7 +21,7 @@ export const showHelp = () => {
   console.log(`  --scheme    -s  ${yellow("Set scheme")}`);
   console.log(`  --image     -i  ${yellow("Set background image")}`);
   console.log(`  --font      -f  ${yellow("Set font")}`);
-  console.log(`  --fontSize -z  ${yellow("Set font size")}`);
+  console.log(`  --fontSize  -z  ${yellow("Set font size")}`);
   console.log(`  --cursor    -c  ${yellow("Set cursor style")}`);
   console.log(`  --padding   -p  ${yellow("Set padding")}`);
 
