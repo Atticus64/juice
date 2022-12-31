@@ -19,7 +19,6 @@ Deno.test("getProfilesConfig should return error if config file not have profile
 
 Deno.test("getProfilesConfig should return profiles if exists", async () => {
   const newContent = {
-    config: "./example-settings.json",
     profiles: {
       fresh: {
         backgroundImage: "C://Users//Admin//Desktop/deno.jpg",
