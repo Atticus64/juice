@@ -1,5 +1,4 @@
 {
-	"config": "./example-settings.json",
 	"profiles": {
 		"fresh": {
 			"backgroundImage": "C://Users//Admin//Desktop/deno.jpg",
