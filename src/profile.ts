@@ -75,6 +75,11 @@ export const changeProfileValues = (profile: Profile, flags: Flags) => {
       profile.cursorShape = cursor;
     }
 
+    if (flags.o || flags.opacity) {
+      const opacity = flags.o ?? flags.opacity;
+      profile.opacity = Number(opacity);
+    }
+
     return profile;
   } catch (err) {
     throw new Error(err);

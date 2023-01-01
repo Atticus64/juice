@@ -1,5 +1,5 @@
 import { blue, cyan, green, reset, yellow } from "colors";
-const version = "0.3.2";
+const version = "0.3.3";
 
 export const showVersion = () => {
   console.log(`juice ${version}`);
@@ -24,6 +24,7 @@ export const showHelp = () => {
   console.log(`  --fontSize  -z  ${yellow("Set font size")}`);
   console.log(`  --cursor    -c  ${yellow("Set cursor style")}`);
   console.log(`  --padding   -p  ${yellow("Set padding")}`);
+  console.log(`  --opacity   -o  ${yellow("Set opacity")}`);
 
   return;
 };

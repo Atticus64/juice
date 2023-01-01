@@ -264,41 +264,41 @@
 				"padding": "6"
 			},
 			{
-				"backgroundImage": "r2d2.png",
+				"backgroundImage": "creeper.jpg",
 				"backgroundImageAlignment": "center",
 				"backgroundImageOpacity": 0.23,
 				"backgroundImageStretchMode": "uniformToFill",
 				"closeOnExit": "always",
 				"colorScheme": "Dracula",
-				"cursorShape": "filledBox",
+				"cursorShape": "bar",
 				"experimental.retroTerminalEffect": false,
 				"font": {
-					"face": "CaskaydiaCove Nerd Font",
-					"size": 15
+					"face": "Minecraft Font",
+					"size": 16
 				},
 				"guid": "{5cfb588f-2b1d-4619-7de2-1d9d45c5aaf9}",
 				"hidden": false,
 				"icon": "ubuntu.png",
 				"name": "Ubuntu-20.04",
 				"opacity": 100,
-				"padding": "8",
+				"padding": "6",
 				"startingDirectory": "\\Ubuntu-20.04\\home\\",
 				"tabTitle": null,
 				"useAcrylic": false
 			},
 			{
-				"backgroundImage": "darthMinimalist.jpg",
+				"backgroundImage": "creeper.jpg",
 				"backgroundImageAlignment": "center",
 				"backgroundImageOpacity": 0.25,
 				"backgroundImageStretchMode": "uniformToFill",
 				"closeOnExit": "always",
-				"colorScheme": "Galaxy",
+				"colorScheme": "Dracula",
 				"commandline": "bash.exe",
-				"cursorShape": "filledBox",
+				"cursorShape": "bar",
 				"experimental.retroTerminalEffect": false,
 				"font": {
-					"face": "FiraCode Nerd Font Mono",
-					"size": 13
+					"face": "Minecraft Font",
+					"size": 16
 				},
 				"guid": "{4c546d3a-3323-4d49-a126-7a793a82a45e}",
 				"hidden": false,
@@ -306,23 +306,26 @@
 				"name": "Git bash",
 				"opacity": 100,
 				"startingDirectory": "%USERPROFILE%",
-				"useAcrylic": false
+				"useAcrylic": false,
+				"padding": "6"
 			},
 			{
-				"backgroundImage": "arsh.jpg",
+				"backgroundImage": "creeper.jpg",
 				"backgroundImageAlignment": "top",
 				"closeOnExit": "always",
 				"colorScheme": "Dracula",
-				"cursorShape": "filledBox",
+				"cursorShape": "bar",
 				"experimental.retroTerminalEffect": false,
 				"font": {
-					"face": "Cascadia Code"
+					"face": "Minecraft Font",
+					"size": 16
 				},
 				"guid": "{9caa0dad-45ba-5f56-a8ff-afceeeaa6101}",
 				"hidden": false,
 				"name": "Simbolo del sistema",
 				"opacity": 52,
-				"useAcrylic": true
+				"useAcrylic": true,
+				"padding": "6"
 			}
 		]
 	},

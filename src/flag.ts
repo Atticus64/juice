@@ -11,6 +11,8 @@ interface layoutFlags {
   cursor?: Cursor;
   p?: string;
   padding?: string;
+  o?: number;
+  opacity?: number;
 }
 
 interface imageFlags {
@@ -47,6 +49,7 @@ const help = ["help", "h"];
 const cursor = ["cursor", "c"];
 const padding = ["padding", "p"];
 const version = ["version", "v"];
+const opacity = ["opacity", "o"];
 
 export const getFlags = async () => {
   let flags: Flags = parse(Deno.args, {
@@ -58,6 +61,7 @@ export const getFlags = async () => {
       ...scheme,
       ...cursor,
       ...padding,
+      ...opacity
     ],
   });
 
@@ -94,6 +98,7 @@ const getProfileFlags = async (flags: Flags) => {
   flags.fontSize = profile.font?.size ?? flags.fontSize;
   flags.scheme = profile.colorScheme ?? flags.scheme;
   flags.padding = profile.padding ?? flags.padding;
+  flags.opacity = profile.opacity ?? flags.opacity;
 
   return flags;
 };
