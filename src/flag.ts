@@ -2,27 +2,40 @@ import { parse } from "flags";
 import { red } from "colors";
 import { checkConfig } from "$/config.ts";
 import { getProfilesConfig } from "$/profile.ts";
-import { Profile } from "$/profile.ts";
+import { Cursor, Profile } from "$/profile.ts";
 
-export interface Flags {
-  terminal?: string;
+interface layoutFlags {
   scheme?: string;
+  s?: string;
+  c?: Cursor;
+  cursor?: Cursor;
+  p?: string;
+  padding?: string;
+}
+
+interface imageFlags {
+  i?: string;
   image?: string;
-  help?: boolean;
-  version?: boolean;
+}
+
+interface fontsFlags {
+  f?: string;
   font?: string;
   fontSize?: number;
-  cursor?: string;
-  padding?: string;
-  t?: string;
-  s?: string;
-  v?: boolean;
-  i?: string;
-  h?: boolean;
-  f?: string;
   z?: number;
-  c?: string;
-  p?: string;
+}
+
+interface generalFlags {
+  h?: boolean;
+  help?: boolean;
+  t?: string;
+  terminal?: string;
+  v?: boolean;
+  version?: boolean;
+}
+
+export interface Flags
+  extends layoutFlags, fontsFlags, generalFlags, imageFlags {
   _: (string | number)[];
 }
 
