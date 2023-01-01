@@ -1,12 +1,19 @@
 import { red } from "colors";
 import { Flags } from "$/flag.ts";
 
+export type Cursor =
+  | "bar"
+  | "filledBox"
+  | "underscore"
+  | "doubleUnderscore"
+  | "emptyBox";
+
 export interface Profile {
   backgroundImage?: string;
   backgroundImageOpacity?: number;
   colorScheme?: string;
   commandline?: string;
-  cursorShape?: string;
+  cursorShape?: Cursor;
   font?: {
     face?: string;
     size?: number;
