@@ -2,7 +2,7 @@ import { assertEquals, assertRejects } from "testing";
 import {
   changeConfig,
   checkConfig,
-  getSettingsFile,
+  getSettings,
   getWtFiles,
 } from "$/config.ts";
 import { Flags, getFlags } from "$/flag.ts";
@@ -123,7 +123,7 @@ Deno.test("if dont especify the terminal should return error", async () => {
   );
 });
 
-Deno.test("getSettingsFile should return a path of settings.json", async () => {
+Deno.test("getSettings should return a path of settings.json", async () => {
   const base = {
     profiles: {
       fresh: {
@@ -146,7 +146,7 @@ Deno.test("getSettingsFile should return a path of settings.json", async () => {
   const basePath = home_dir() + "\\AppData\\Local\\Packages\\";
   const endPath = "\\LocalState\\settings.json";
 
-  const path = await getSettingsFile();
+  const [_, path] = await getSettings();
 
   assertEquals(path.startsWith(basePath), true);
   assertEquals(path.endsWith(endPath), true);
