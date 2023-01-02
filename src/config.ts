@@ -1,4 +1,4 @@
-import { exists } from "fs";
+import * as path from "fs";
 import home_dir from "home_dir";
 import { green, red } from "colors";
 import { File } from "$/file.ts";
@@ -13,19 +13,19 @@ export const checkConfig = async (
 
   if (is_test) {
     const configPath = dirFile;
-    const haveConfig = await exists(configPath);
-    return [configPath, haveConfig];
+    const hasConfig = await path.exists(configPath);
+    return [configPath, hasConfig];
   }
 
   let configPath = homeFile;
-  let haveConfig = await exists(configPath);
+  let hasConfig = await path.exists(configPath);
 
-  if (!haveConfig) {
+  if (!hasConfig) {
     configPath = dirFile;
-    haveConfig = await exists(configPath);
+    hasConfig = await path.exists(configPath);
   }
 
-  return [configPath, haveConfig];
+  return [configPath, hasConfig];
 };
 
 export const getWtFiles = async (configPath: string): Promise<[string, string]> => {
@@ -77,30 +77,29 @@ export const changeConfig = async (
 };
 
 export const getSettingspath = async () => {
-  let path = home_dir() + "\\AppData\\Local\\Packages\\";
+  let settingsPath = home_dir() + "\\AppData\\Local\\Packages\\";
   let folderName = "";
 
   try {
-    for await (const entry of Deno.readDir(path)) {
+    for await (const entry of Deno.readDir(settingsPath)) {
       if (entry.name.startsWith("Microsoft.WindowsTerminal_")) {
         folderName = entry.name;
       }
     }
 
-    path += `${folderName}\\LocalState\\settings.json`;
+    settingsPath += `${folderName}\\LocalState\\settings.json`;
 
-    const haveSettings = await exists(path);
+    const hasSettings: boolean = await path.exists(settingsPath);
 
-    if (!haveSettings) {
-      throw new Error(red(`Settings.json no exists in path: ${path}`));
+    if (!hasSettings) {
+      throw new Error(red(`Settings.json no path.exists in path: ${path}`));
     }
 
-    return path;
+    return settingsPath;
   } catch (err) {
     throw new Error(err);
   }
 };
-
 
 export const getSettings = async (): Promise<[File, string]> => {
   try {

@@ -16,9 +16,9 @@ const main = async () => {
   const needVersion = askVersion(flags);
   if (needVersion) return
 
-  const [configPath, haveJuiceConfig] = await checkConfig();
+  const [configPath, hasJuiceConfig] = await checkConfig();
 
-  if (!haveJuiceConfig) {
+  if (!hasJuiceConfig) {
     const [settingsJson, path] = await getSettings();
     changeConfig(flags, settingsJson, path)
     return;

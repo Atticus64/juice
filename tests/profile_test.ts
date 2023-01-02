@@ -2,7 +2,7 @@ import { getProfilesConfig } from "$/profile.ts";
 import { checkConfig } from "$/config.ts";
 import { assertEquals, assertRejects } from "testing";
 
-Deno.test("getProfilesConfig should return error if config file not have profiles", async () => {
+Deno.test("getProfilesConfig Should throws an error when config has not profiles", async () => {
   const newContent = {
     config: "./example-settings.json",
   };
@@ -17,7 +17,7 @@ Deno.test("getProfilesConfig should return error if config file not have profile
   );
 });
 
-Deno.test("getProfilesConfig should return profiles if exists", async () => {
+Deno.test("getProfilesConfig should return profiles if path.exists", async () => {
   const newContent = {
     profiles: {
       fresh: {
