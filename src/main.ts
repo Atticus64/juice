@@ -2,55 +2,29 @@ import { Flags, getFlags } from "$/flag.ts";
 import {
   changeConfig,
   checkConfig,
-  getSettingsFile,
-  getWtFiles,
+  getSettings,
+  configureWindowsTerminal
 } from "$/config.ts";
-import { showHelp, showVersion } from "$/help.ts";
+import { checkHelp, askVersion } from '$/help.ts';
 
 const main = async () => {
   const flags: Flags = await getFlags();
 
-  const needHelp = flags.help || flags.h;
+  const needHelp = checkHelp(flags)
+  if (needHelp) return
 
-  const versionAsk = flags.version || flags.v;
+  const needVersion = askVersion(flags);
+  if (needVersion) return
 
-  if (needHelp || Deno.args.length === 0) {
-    showHelp();
+  const [configPath, haveJuiceConfig] = await checkConfig();
+
+  if (!haveJuiceConfig) {
+    const [settingsJson, path] = await getSettings();
+    changeConfig(flags, settingsJson, path)
     return;
   }
 
-  if (versionAsk) {
-    showVersion();
-    return;
-  }
-
-  const [configPath, haveConfig] = await checkConfig();
-
-  if (!haveConfig) {
-    try {
-      const settingsPath = await getSettingsFile();
-
-      const fileWindowsTerminal = await Deno.readTextFile(settingsPath);
-
-      const fileWtJson = JSON.parse(fileWindowsTerminal);
-
-      changeConfig(flags, fileWtJson, settingsPath);
-
-      return;
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
-
-  try {
-    const [fileWindowsTerminal, wtPath] = await getWtFiles(configPath);
-
-    const fileWtJson = JSON.parse(fileWindowsTerminal);
-
-    changeConfig(flags, fileWtJson, wtPath);
-  } catch (err) {
-    throw new Error(err);
-  }
+  await configureWindowsTerminal(flags, configPath);
 };
 
 if (import.meta.main) main();

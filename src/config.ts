@@ -28,14 +28,14 @@ export const checkConfig = async (
   return [configPath, haveConfig];
 };
 
-export const getWtFiles = async (configPath: string) => {
+export const getWtFiles = async (configPath: string): Promise<[string, string]> => {
   try {
     const fileRaw = await Deno.readTextFile(configPath);
     const wtJson = JSON.parse(fileRaw);
     let wtPath = wtJson.config;
 
     if (!wtPath) {
-      wtPath = await getSettingsFile();
+      wtPath = await getSettingspath();
     }
 
     const fileWindowsTerminal = await Deno.readTextFile(wtPath);
@@ -76,7 +76,7 @@ export const changeConfig = async (
   }
 };
 
-export const getSettingsFile = async () => {
+export const getSettingspath = async () => {
   let path = home_dir() + "\\AppData\\Local\\Packages\\";
   let folderName = "";
 
@@ -100,3 +100,30 @@ export const getSettingsFile = async () => {
     throw new Error(err);
   }
 };
+
+
+export const getSettings = async (): Promise<[File, string]> => {
+  try {
+    const settingsPath = await getSettingspath();
+
+    const fileWindowsTerminal = await Deno.readTextFile(settingsPath);
+
+    const fileWtJson: File = JSON.parse(fileWindowsTerminal);
+
+    return [fileWtJson, settingsPath];
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+export const configureWindowsTerminal = async (flags: Flags, configPath: string) => {
+  try {
+    const [fileWindowsTerminal, wtPath] = await getWtFiles(configPath);
+
+    const fileWtJson = JSON.parse(fileWindowsTerminal);
+
+    changeConfig(flags, fileWtJson, wtPath);
+  } catch (err) {
+    throw new Error(err);
+  }
+}

@@ -1,4 +1,5 @@
 import { blue, cyan, green, reset, yellow } from "colors";
+import { Flags } from '$/flag.ts';
 const version = "0.3.3";
 
 export const showVersion = () => {
@@ -12,7 +13,7 @@ export const showHelp = () => {
   );
   console.log(blue("Subcommands:"));
   console.log(
-    `  use  <profile>  ${yellow("Set profile config of juice.json")}`,
+    `  use <profile>   ${yellow("Set profile config of juice.json")}`,
   );
   console.log(green("Options:"));
   console.log(`  --help      -h  ${yellow("Shows help")}`);
@@ -28,3 +29,27 @@ export const showHelp = () => {
 
   return;
 };
+
+export const checkHelp = (flags: Flags) => {
+
+  let needHelp = flags.help || flags.h;
+
+  if (needHelp || Deno.args.length === 0) {
+    showHelp();
+    needHelp = true
+  }
+
+  return needHelp;
+}
+
+export const askVersion = (flags: Flags): boolean => {
+
+  const needVersion = flags.version || flags.v;
+
+  if (!needVersion) {
+    return Boolean(needVersion);
+  }
+
+  showVersion();
+  return needVersion;
+}
