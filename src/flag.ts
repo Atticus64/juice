@@ -4,7 +4,7 @@ import { checkConfig } from "$/config.ts";
 import { getProfilesConfig } from "$/profile.ts";
 import { Cursor, Profile } from "$/profile.ts";
 
-interface layoutFlags {
+interface LayoutFlags {
   scheme?: string;
   s?: string;
   c?: Cursor;
@@ -15,19 +15,19 @@ interface layoutFlags {
   opacity?: number;
 }
 
-interface imageFlags {
+interface ImageFlags {
   i?: string;
   image?: string;
 }
 
-interface fontsFlags {
+interface FontsFlags {
   f?: string;
   font?: string;
   fontSize?: number;
   z?: number;
 }
 
-interface generalFlags {
+interface GeneralFlags {
   h?: boolean;
   help?: boolean;
   t?: string;
@@ -37,7 +37,7 @@ interface generalFlags {
 }
 
 export interface Flags
-  extends layoutFlags, fontsFlags, generalFlags, imageFlags {
+  extends LayoutFlags, FontsFlags, GeneralFlags, ImageFlags {
   _: (string | number)[];
 }
 
