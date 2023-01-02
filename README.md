@@ -1,6 +1,6 @@
 # Juice 🥤
 
-<img src="https://i.postimg.cc/qvN8YGMB/juice.png" alt="drawing" style="width:300px;"/>
+<img src="https://i.postimg.cc/yN7hCjh5/juice-logo.png" alt="drawing" style="width:300px;"/>
 
 A sweet and refreshing deno script to personalize windows terminal
 
