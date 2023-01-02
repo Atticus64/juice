@@ -3,6 +3,7 @@ import { red } from "colors";
 import { checkConfig } from "$/config.ts";
 import { getProfilesConfig } from "$/profile.ts";
 import { Cursor, Profile } from "$/profile.ts";
+import { haveSubcommand } from '$/subcommands/search.ts';
 
 interface LayoutFlags {
   scheme?: string;
@@ -65,16 +66,16 @@ export const getFlags = async () => {
     ],
   });
 
-  const haveUse = Deno.args.some((a) => a === "use");
+  const haveUse = haveSubcommand('use', Deno.args)
 
   if (haveUse) {
-    flags = await getProfileFlags(flags);
+    flags = await useProfileFlags(flags);
   }
 
   return flags;
 };
 
-const getProfileFlags = async (flags: Flags) => {
+const useProfileFlags = async (flags: Flags) => {
   const idx = Deno.args.findIndex((a) => a === "use");
   const profileName: string | undefined = Deno.args[idx + 1];
 
