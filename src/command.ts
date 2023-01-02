@@ -1,8 +1,10 @@
 export interface Command {
-  command: {
-    direction?: string;
-    action?: string;
-    singleLine?: boolean;
-  };
-  keys: string;
+	direction?: string;
+	action?: string;
+	singleLine?: boolean;
+}
+
+export interface Action {
+	command: Command,
+	keys: string
 }
