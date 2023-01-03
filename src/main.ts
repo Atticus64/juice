@@ -10,11 +10,9 @@ import { checkHelp, askVersion } from '$/help.ts';
 const main = async () => {
   const flags: Flags = await getFlags();
 
-  const needHelp = checkHelp(flags)
-  if (needHelp) return
-
-  const needVersion = askVersion(flags);
-  if (needVersion) return
+  if (checkHelp(flags) || askVersion(flags)) {
+    return;
+  }
 
   const [configPath, hasJuiceConfig] = await checkConfig();
 

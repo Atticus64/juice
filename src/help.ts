@@ -39,17 +39,16 @@ export const checkHelp = (flags: Flags) => {
     needHelp = true
   }
 
-  return needHelp;
+  return Boolean(needHelp);
 }
 
-export const askVersion = (flags: Flags): boolean => {
+export const askVersion = (flags: Flags) => {
 
   const needVersion = flags.version || flags.v;
 
-  if (!needVersion) {
-    return Boolean(needVersion);
+  if (needVersion) {
+    showVersion();
   }
 
-  showVersion();
-  return needVersion;
+  return Boolean(needVersion)
 }
