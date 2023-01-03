@@ -4,7 +4,7 @@
 
 A sweet and refreshing deno script to personalize windows terminal
 
-![juice.gif](https://i.postimg.cc/KvSQywn0/juice.gif)
+[![juice.gif](https://i.postimg.cc/pdY1D6Ts/juice.gif)](https://postimg.cc/McHDwt1B)
 
 - [Getting Started](https://github.com/Atticus64/juice/wiki/Getting-Started)
 
