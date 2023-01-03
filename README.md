@@ -13,7 +13,7 @@ A sweet and refreshing deno script to personalize windows terminal
 * With Deno
 
 ```
-deno install --allow-read --allow-env --allow-write --import-map=https://denopkg.com/Atticus64/juice@master/import_map.json -n juice --no-check https://denopkg.com/Atticus64/juice@master/src/main.ts
+deno install --allow-read --allow-env --allow-write -n juice --no-check https://denopkg.com/Atticus64/juice@main/src/main.ts
 ```
 
 * Download binary from [releases page](https://github.com/Atticus64/juice/releases)  
