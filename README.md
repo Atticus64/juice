@@ -10,6 +10,12 @@ A sweet and refreshing deno script to personalize windows terminal
 
 ## Installation
 
+- With Winget
+
+```
+winget install juice.juice
+```
+
 - With Deno
 
 ```
