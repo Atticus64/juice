@@ -28,7 +28,9 @@ export const checkConfig = async (
   return [configPath, hasConfig];
 };
 
-export const getWtFiles = async (configPath: string): Promise<[string, string]> => {
+export const getWtFiles = async (
+  configPath: string,
+): Promise<[string, string]> => {
   try {
     const fileRaw = await Deno.readTextFile(configPath);
     const wtJson = JSON.parse(fileRaw);
@@ -113,9 +115,12 @@ export const getSettings = async (): Promise<[File, string]> => {
   } catch (err) {
     throw new Error(err);
   }
-}
+};
 
-export const configureWindowsTerminal = async (flags: Flags, configPath: string) => {
+export const configureWindowsTerminal = async (
+  flags: Flags,
+  configPath: string,
+) => {
   try {
     const [fileWindowsTerminal, wtPath] = await getWtFiles(configPath);
 
@@ -125,4 +130,4 @@ export const configureWindowsTerminal = async (flags: Flags, configPath: string)
   } catch (err) {
     throw new Error(err);
   }
-}
+};

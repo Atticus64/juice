@@ -2,10 +2,10 @@ import { Flags, getFlags } from "$/flag.ts";
 import {
   changeConfig,
   checkConfig,
+  configureWindowsTerminal,
   getSettings,
-  configureWindowsTerminal
 } from "$/config.ts";
-import { checkHelp, askVersion } from '$/help.ts';
+import { askVersion, checkHelp } from "$/help.ts";
 
 const main = async () => {
   const flags: Flags = await getFlags();
@@ -18,7 +18,7 @@ const main = async () => {
 
   if (!hasJuiceConfig) {
     const [settingsJson, path] = await getSettings();
-    changeConfig(flags, settingsJson, path)
+    changeConfig(flags, settingsJson, path);
     return;
   }
 

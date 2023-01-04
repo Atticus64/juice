@@ -1,5 +1,5 @@
 import { blue, cyan, green, reset, yellow } from "colors";
-import { Flags } from '$/flag.ts';
+import { Flags } from "$/flag.ts";
 const version = "0.3.3";
 
 export const showVersion = () => {
@@ -31,24 +31,22 @@ export const showHelp = () => {
 };
 
 export const checkHelp = (flags: Flags) => {
-
   let needHelp = flags.help || flags.h;
 
   if (needHelp || Deno.args.length === 0) {
     showHelp();
-    needHelp = true
+    needHelp = true;
   }
 
   return Boolean(needHelp);
-}
+};
 
 export const askVersion = (flags: Flags) => {
-
   const needVersion = flags.version || flags.v;
 
   if (needVersion) {
     showVersion();
   }
 
-  return Boolean(needVersion)
-}
+  return Boolean(needVersion);
+};

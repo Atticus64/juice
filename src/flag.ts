@@ -1,7 +1,7 @@
 import { parse } from "flags";
 import { useProfileFlags } from "$/subcommands/use.ts";
 import { Cursor } from "$/profile.ts";
-import { hasSubCommand } from '$/subcommands/search.ts';
+import { hasSubCommand } from "$/subcommands/search.ts";
 
 interface LayoutFlags {
   scheme?: string;
@@ -60,11 +60,11 @@ export const getFlags = async () => {
       ...scheme,
       ...cursor,
       ...padding,
-      ...opacity
+      ...opacity,
     ],
   });
 
-  const hasUse = hasSubCommand('use', Deno.args)
+  const hasUse = hasSubCommand("use", Deno.args);
 
   if (hasUse) {
     flags = await useProfileFlags(flags);

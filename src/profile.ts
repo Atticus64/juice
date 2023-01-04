@@ -42,7 +42,6 @@ export const getProfilesConfig = async (configPath: string) => {
 };
 
 export const changeProfileValues = (profile: Profile, flags: Flags) => {
-
   try {
     if (flags.f || flags.font) {
       if (!profile.font) return;

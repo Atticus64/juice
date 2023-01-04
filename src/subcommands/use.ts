@@ -2,7 +2,7 @@ import { red } from "colors";
 import { checkConfig } from "$/config.ts";
 import { getProfilesConfig } from "$/profile.ts";
 import { Profile } from "$/profile.ts";
-import { Flags } from '$/flag.ts';
+import { Flags } from "$/flag.ts";
 
 export const useProfileFlags = async (flags: Flags) => {
   const idx = Deno.args.findIndex((a) => a === "use");
@@ -32,7 +32,3 @@ export const useProfileFlags = async (flags: Flags) => {
 
   return flags;
 };
-
-
-
-
