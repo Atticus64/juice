@@ -1,6 +1,8 @@
-import { getProfilesConfig } from "$/profile.ts";
+import { getProfilesConfig, changeProfileValues } from "$/profile.ts";
 import { checkConfig } from "$/config.ts";
 import { assertEquals, assertRejects } from "testing";
+import { Flags, getFlags } from "$/flag.ts";
+import { Profile } from '$/profile.ts';
 
 Deno.test("getProfilesConfig Should throws an error when config has not profiles", async () => {
   const newContent = {
@@ -57,4 +59,33 @@ Deno.test("getProfilesConfig should return profiles if path.exists", async () =>
   const result = await getProfilesConfig(configPath);
 
   assertEquals(result, profiles);
+});
+
+
+
+Deno.test("changeProfileValues Should change profile props", async () => {
+  const flags: Flags = await getFlags();
+  flags.font = "Minecraft Font";
+  flags.image = "creeper.jpg";
+  flags.scheme = "Dracula";
+  flags.terminal = "Hacker";
+
+  const some_profile: Profile = {
+    name: "cmd",
+    backgroundImage: "C://Users//Admin//Desktop/deno.jpg",
+    colorScheme: "Dracula",
+    cursorShape: "filledBox",
+    font: {
+      face: "JetBrainsMono NF",
+      size: 14
+    },
+    opacity: 10,
+    padding: "30",
+    useAcrylic: false
+  }
+
+
+  changeProfileValues(some_profile, flags)
+
+
 });

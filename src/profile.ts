@@ -42,15 +42,16 @@ export const getProfilesConfig = async (configPath: string) => {
 };
 
 export const changeProfileValues = (profile: Profile, flags: Flags) => {
-  if (!profile.font) return;
 
   try {
     if (flags.f || flags.font) {
+      if (!profile.font) return;
       const font = flags.f ?? flags.font;
       profile.font.face = font;
     }
 
     if (flags.z || flags.fontSize) {
+      if (!profile.font) return;
       const size = flags.z ?? flags.fontSize;
       profile.font.size = Number(size);
     }
