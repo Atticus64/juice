@@ -1,10 +1,10 @@
 {
   "imports": {
-    "testing": "https://deno.land/std@0.152.0/testing/asserts.ts",
     "$/": "./src/",
     "colors": "https://deno.land/std@0.170.0/fmt/colors.ts",
-    "home_dir": "https://deno.land/x/dir@1.5.1/home_dir/mod.ts",
+    "flags": "https://deno.land/std@0.168.0/flags/mod.ts",
     "fs": "https://deno.land/std@0.74.0/fs/mod.ts",
-    "flags": "https://deno.land/std@0.168.0/flags/mod.ts"
+    "home_dir": "https://deno.land/x/dir@1.5.1/home_dir/mod.ts",
+    "testing": "https://deno.land/std@0.152.0/testing/asserts.ts"
   }
 }

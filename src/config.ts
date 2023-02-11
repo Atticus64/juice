@@ -63,7 +63,9 @@ export const changeConfig = async (
     const profiles = data.profiles.list;
 
     profiles.forEach((prof) => {
-      changeProfileValues(prof, flags);
+      const terminalProfile = flags.t ?? flags.terminal
+      if (prof.name === terminalProfile)
+        changeProfileValues(prof, flags);
     });
 
     const newConfig = JSON.stringify(data, null, "\t");
