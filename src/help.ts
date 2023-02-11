@@ -1,6 +1,6 @@
 import { blue, cyan, green, reset, yellow } from "colors";
 import { Flags } from "$/flag.ts";
-const version = "0.3.3";
+const version = "0.3.5";
 
 export const showVersion = () => {
   console.log(`juice ${version}`);
