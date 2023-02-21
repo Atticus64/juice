@@ -1,7 +1,8 @@
 import { parse } from "flags";
-import { useProfileFlags } from "$/subcommands/use.ts";
 import { Cursor } from "$/profile.ts";
-import { hasSubCommand } from "$/subcommands/search.ts";
+import { checkSubCommands } from "$/subcommands/search.ts";
+import { getSubCommand } from './subcommands/search.ts';
+import { executeSubCommand } from './subcommands/index.ts';
 
 interface LayoutFlags {
   scheme?: string;
@@ -40,6 +41,11 @@ export interface Flags
   _: (string | number)[];
 }
 
+export enum Subcommands {
+  use = 'use',
+  add = 'add',
+}
+
 const terminal = ["terminal", "t"];
 const scheme = ["scheme", "s"];
 const font = ["font", "f"];
@@ -64,10 +70,12 @@ export const getFlags = async () => {
     ],
   });
 
-  const hasUse = hasSubCommand("use", Deno.args);
+  const hasSubCommands = checkSubCommands(Deno.args)
+  // flags = await useProfileFlags(flags)
 
-  if (hasUse) {
-    flags = await useProfileFlags(flags);
+  if (hasSubCommands) {
+    const command = getSubCommand(Deno.args)
+    flags = await executeSubCommand(flags, command)
   }
 
   return flags;

@@ -1,6 +1,6 @@
 import { blue, cyan, green, reset, yellow } from "colors";
 import { Flags } from "$/flag.ts";
-const version = "0.3.5";
+const version = "0.4.0";
 
 export const showVersion = () => {
   console.log(`juice ${version}`);
@@ -13,7 +13,10 @@ export const showHelp = () => {
   );
   console.log(blue("Subcommands:"));
   console.log(
-    `  use <profile>   ${yellow("Set profile config of juice.json")}`,
+    `  use <profile> ${yellow("Set profile config of juice.json")}`,
+  );
+  console.log(
+    `  add <scheme> ${yellow("Add a color scheme")}`,
   );
   console.log(green("Options:"));
   console.log(`  --help      -h  ${yellow("Shows help")}`);
@@ -29,6 +32,32 @@ export const showHelp = () => {
 
   return;
 };
+
+export const showHelpUse = () => {
+  let profiles = {
+    "profiles": {
+      "fresh": {
+        "backgroundImage": "C://Users//Admin//Desktop/deno.jpg",
+        "colorScheme": "Dracula",
+        "cursorShape": "filledBox",
+        "font": {
+          "face": "JetBrainsMono NF",
+          "size": 14
+        },
+        "opacity": 10,
+        "padding": "4",
+        "useAcrylic": false
+      }
+    }
+  }
+  console.log('juice use <profile>')
+  console.log('the profile is a name of one profile in juice.json')
+  console.log('Example')
+  console.log('juice.json file')
+  console.log(profiles)
+  console.log('juice use fresh')
+  Deno.exit()
+}
 
 export const checkHelp = (flags: Flags) => {
   let needHelp = flags.help || flags.h;

@@ -3,8 +3,14 @@ import { checkConfig } from "$/config.ts";
 import { getProfilesConfig } from "$/profile.ts";
 import { Profile } from "$/profile.ts";
 import { Flags } from "$/flag.ts";
+import { showHelpUse } from "../help.ts";
 
 export const useProfileFlags = async (flags: Flags) => {
+
+  if (flags.help || flags.h) {
+    showHelpUse()
+  }
+
   const idx = Deno.args.findIndex((a) => a === "use");
   const profileName: string | undefined = Deno.args[idx + 1];
 

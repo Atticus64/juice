@@ -54,9 +54,14 @@ export const changeConfig = async (
   path: string,
 ): Promise<[File, string]> => {
   if (!flags.terminal && !flags.t) {
-    throw new Error(
-      red("You need to specify the terminal to apply the config"),
-    );
+
+
+    if (!data.profiles.defaults.name) {
+      throw new Error(
+        red("You need to specify the terminal to apply the config"),
+      );
+    }
+    flags.terminal = data.profiles.defaults.name
   }
 
   try {

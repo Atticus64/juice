@@ -24,6 +24,7 @@ export interface File {
       };
       opacity?: 14;
       useAcrylic?: true;
+      name: string;
     };
     list: Profile[];
   };
