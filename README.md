@@ -13,7 +13,7 @@ A sweet and refreshing deno script to personalize windows terminal
 - With Winget
 
 ```
-winget install juice.juice
+winget install atticus64.juice
 ```
 
 - With Deno
