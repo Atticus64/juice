@@ -1,0 +1,1 @@
+export const schemesWeb = 'https://2zrysvpla9.execute-api.eu-west-2.amazonaws.com/prod/themes'
