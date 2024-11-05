@@ -14,8 +14,6 @@ const main = async () => {
 		return;
 	}
 
-	console.log('foo')
-
 	const [configPath, hasJuiceConfig] = await checkConfig();
 
 	if (!hasJuiceConfig) {
